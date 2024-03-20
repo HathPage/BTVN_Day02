@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected Button buttonLogin, buttonRegister;
     protected TextView tvRegister;
     protected UserManagement userManagement;
+    private boolean checkbox = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +33,30 @@ public class MainActivity extends AppCompatActivity {
         editTextUsername = findViewById(R.id.editTextUsername);
         editTextPassword = findViewById(R.id.editTextPassword);
         buttonLogin = findViewById(R.id.buttonLogin);
+
+        EditText editTextUsername = findViewById(R.id.editTextUsername);
+        editTextUsername.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    editTextUsername.setBackgroundResource(R.drawable.shape_focus);
+                } else {
+                    editTextUsername.setBackgroundResource(R.drawable.shape); // Khôi phục khung màu ban đầu
+                }
+            }
+        });
+        EditText editTextPassword = findViewById(R.id.editTextPassword);
+        editTextPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    editTextPassword.setBackgroundResource(R.drawable.shape_focus);
+                } else {
+                    editTextPassword.setBackgroundResource(R.drawable.shape); // Khôi phục khung màu ban đầu
+                }
+            }
+        });
+
 
         final ImageButton togglePasswordVisibility = findViewById(R.id.eye);
 
@@ -72,6 +97,20 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //        });
+        ImageButton remember = findViewById(R.id.remember_me);
+        remember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(checkbox){
+                    remember.setBackgroundResource(R.drawable.checkboxlight);
+                    checkbox = false;
+                } else {
+                    remember.setBackgroundResource(R.drawable.checkboxdark);
+                    checkbox = true;
+                }
+            }
+        });
+
         TextView tvRegister = findViewById(R.id.buttonRegister);
         String text = "Don't have an account? Create Account";
         SpannableString spannableString = new SpannableString(text);
@@ -92,6 +131,5 @@ public class MainActivity extends AppCompatActivity {
         // Thiết lập spannableString cho TextView
         tvRegister.setText(spannableString);
         tvRegister.setMovementMethod(LinkMovementMethod.getInstance());
-
     }
 }
