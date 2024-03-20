@@ -20,8 +20,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     protected EditText editTextUsername, editTextPassword;
-    protected Button buttonLogin, buttonRegister;
-    protected TextView tvRegister;
+    protected Button buttonLogin;
     protected UserManagement userManagement;
     private boolean checkbox = true;
     @Override
